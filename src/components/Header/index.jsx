@@ -8,6 +8,7 @@ import {
   Container,
   MenuItem,
 } from "@mui/material";
+import { useHistory } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 
@@ -15,14 +16,15 @@ import { AppBarContainer, LinkMenu } from "./styles";
 import { config } from "./config";
 
 export const Header = () => {
+  const history = useHistory();
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleRoute = (route) => {
+    history.push(`${route}`);
   };
 
   return (
@@ -67,13 +69,16 @@ export const Header = () => {
                 anchorEl={anchorElNav}
                 keepMounted
                 open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+                onClose={() => handleRoute("/")}
                 sx={{
                   display: { xs: "block", md: "none" },
                 }}
               >
                 {config.pages.map((page) => (
-                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    key={page.name}
+                    onClick={() => handleRoute(page.to)}
+                  >
                     <Typography textAlign="center">{page.name}</Typography>
                   </MenuItem>
                 ))}
