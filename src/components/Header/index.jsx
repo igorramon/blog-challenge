@@ -24,7 +24,10 @@ export const Header = () => {
   };
 
   const handleRoute = (route) => {
-    history.push(`${route}`);
+    if (route) {
+      history.push(`${route}`);
+    }
+    setAnchorElNav(null);
   };
 
   return (
@@ -69,7 +72,7 @@ export const Header = () => {
                 anchorEl={anchorElNav}
                 keepMounted
                 open={Boolean(anchorElNav)}
-                onClose={() => handleRoute("/")}
+                onClose={() => handleRoute()}
                 sx={{
                   display: { xs: "block", md: "none" },
                 }}
@@ -95,7 +98,7 @@ export const Header = () => {
               variant="h5"
               noWrap
               component="a"
-              href=""
+              href="/"
               sx={{
                 color: "#eba417",
                 mr: 2,

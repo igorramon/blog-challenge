@@ -76,7 +76,7 @@ export function CreatePost(props) {
           sx={{
             color: "#000",
             mr: 2,
-            display: { xs: "none", md: "flex" },
+            display: { xs: "flex", md: "flex" },
             fontFamily: "monospace",
             fontWeight: 700,
             letterSpacing: ".3rem",
